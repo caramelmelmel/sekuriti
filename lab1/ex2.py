@@ -37,9 +37,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", dest="filein", help="input file")
     parser.add_argument("-o", dest="fileout", help="output file")
-    #add for enc
-    parser.add_argument("-m", help="type e for encryption or d for decryption")
-    parser.add_argument("-k")
+
     # parse our arguments
     args = parser.parse_args()
     filein = args.filein
