@@ -16,9 +16,8 @@ def dec(byte, key):
 
 def doStuff(filein, fileout, key, mode):
     # open file handles to both files
-    fin = open(filein, mode="r", encoding="utf-8", newline="\n")  # read mode
+    
     fin_b = open(filein, mode="rb")  # binary read mode
-    fout = open(fileout, mode="w", encoding="utf-8", newline="\n")  # write mode
     fout_b = open(fileout, mode="wb")  # binary write mode
     c = fin_b.read()  # read in file into c as a str
     # and write to fileout
@@ -34,9 +33,7 @@ def doStuff(filein, fileout, key, mode):
     fout_b.write(output)
 
     # close all file streams
-    fin.close()
     fin_b.close()
-    fout.close()
     fout_b.close()
 
 
