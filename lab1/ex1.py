@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # SUTD 50.042 FCS Lab 1
 # Simple file read in/out
-
+# Leong Yun Qin Melody 
+#Student ID: 1004489
 
 # Import libraries
 import sys
