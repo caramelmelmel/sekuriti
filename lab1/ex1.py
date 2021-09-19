@@ -9,7 +9,7 @@ import argparse
 import string
 
 def enc(letter, key):
-    return chr((ord(letter)+key)%256)
+    return (string.printable[(string.printable.index(letter) + key) % 100])
 
 def dec(letter, key):
     return enc(letter, -key)
