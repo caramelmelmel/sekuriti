@@ -6,9 +6,15 @@
 # Import libraries
 import sys
 import argparse
+import string
 
+def enc(letter, key):
+    pass
 
-def doStuff(filein, fileout):
+def dec(letter, key):
+    pass
+
+def doStuff(filein, fileout, mode_e_d):
     # open file handles to both files
     fin = open(filein, mode="r", encoding="utf-8", newline="\n")  # read mode
     fin_b = open(filein, mode="rb")  # binary read mode
@@ -37,14 +43,28 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", dest="filein", help="input file")
     parser.add_argument("-o", dest="fileout", help="output file")
-    #add for enc
-    parser.add_argument("-m", help="type e for encryption or d for decryption")
-    parser.add_argument("-k")
+
+    #add for enc and key
+    parser.add_argument("-m", dest="mode",help="type e for encryption or d for decryption")
+    #how many shifts
+    parser.add_argument("-k", dest="key",type=int)
     # parse our arguments
     args = parser.parse_args()
     filein = args.filein
     fileout = args.fileout
+    #check the keys
+    if((1<=args.k<=len(string.printable)-1) == False):
+        raise ValueError('The value of the key must be between 1 and that of string.printable')
+    
+    #check mode arguments
+    if(args.mode == "e" or args.mode == "E" or args.mode=="d" or args.mode=="D"):
+        doStuff(filein, fileout, args.mode)
+    else:
+        raise ValueError('The mode has to be only \"d" or \"e" case insenstive')
 
-    doStuff(filein, fileout)
+    
+    
+
+    
 
     # all done
