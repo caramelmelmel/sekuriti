@@ -37,6 +37,9 @@ print(decrypt(original_cipher, OTP))
 def hax():
     # TODO: manipulate ciphertext to decrypt to:
     # "Student ID 100XXXX gets 4 points"
+    new_text = b"Student ID 1000000 gets 9 points\n"
+    mask = XOR(original_plaintext,new_text)
+    new_cipher = XOR(original_cipher, mask)
     return new_cipher
 
 
