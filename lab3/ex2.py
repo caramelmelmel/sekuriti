@@ -49,7 +49,9 @@ for line in read_hash:
     final_words += resultant_hashed_plaintext[line] + "\n"
 
 file_output.write(final_words)
-    
-    
+
+#close those file pointers pick them up!!!!
+file_output.close()
+hash_file.close()    
 
 print(f"The execution time is {time.time()-start_time}")
