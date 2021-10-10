@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Completed by:
+# Leong Yun Qin Melody 1004489
 
 # Present skeleton file for 50.042 FCS
 
@@ -31,8 +33,28 @@ def ror(val, r_bits, max_bits): return \
     (val << (max_bits - (r_bits % max_bits)) & (2**max_bits - 1))
 
 
+
+#return the key dictionary
+#generate the round key for 80 bit key
 def genRoundKeys(key):
-    pass
+    #the key denotes the 80 or 128 bit
+    #return a dictionary of 64 bit 
+    key_dict = {0:32}
+
+    #try doing it for the rest
+    for i in range(1,FULLROUND+2):
+        #raw kwy at bit level
+        key_dict[i] = key >> 16
+        # 1. Shift
+        # rawKey[19:len(rawKey)]+rawKey[0:19]
+        key = ((key & (2 ** 19 - 1)) << 61) + (key >> 19)
+        # 2. SBox
+        # rawKey[76:80] = S(rawKey[76:80])
+        key = (sbox[key >> 76] << 76) + (key & (2 ** 76 - 1))
+        #salt
+        key ^= i << 15
+
+    return key_dict
 
 
 def addRoundKey(state, Ki):
@@ -58,6 +80,7 @@ def present_inv_round(state, roundKey):
 def present(plain, key):
     K = genRoundKeys(key)
     state = plain
+    #31 rounds of it
     for i in range(1, FULLROUND + 1):
         state = present_round(state, K[i])
     state = addRoundKey(state, K[32])
@@ -79,7 +102,8 @@ if __name__ == "__main__":
     keysTest = {0: 32, 1: 0, 2: 13835058055282163712, 3: 5764633911313301505, 4: 6917540022807691265, 5: 12682149744835821666, 6: 10376317730742599722, 7: 442003720503347, 8: 11529390968771969115, 9: 14988212656689645132, 10: 3459180129660437124, 11: 16147979721148203861, 12: 17296668118696855021, 13: 9227134571072480414, 14: 4618353464114686070, 15: 8183717834812044671, 16: 1198465691292819143, 17: 2366045755749583272, 18: 13941741584329639728, 19: 14494474964360714113, 20: 7646225019617799193, 21: 13645358504996018922, 22: 554074333738726254, 23: 4786096007684651070, 24: 4741631033305121237, 25: 17717416268623621775, 26: 3100551030501750445, 27: 9708113044954383277, 28: 10149619148849421687, 29: 2165863751534438555, 30: 15021127369453955789, 31: 10061738721142127305, 32: 7902464346767349504}
     for k in keysTest.keys():
         assert keysTest[k] == keys[k]
-    
+    print("success in asserting the key")
+
     # Testvectors for single rounds without keyscheduling
     plain1 = 0x0000000000000000
     key1 = 0x00000000000000000000
