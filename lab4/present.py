@@ -74,9 +74,12 @@ def sBoxLayer(state,mode):
             new_state += sbox[( state >> (i * 4)) & 0xF] << (i * 4)
     
     if mode == 'd':
-        new_state = 0
-        for i in range(16):
-            new_state += sbox_inv[( state >> (i * 4)) & 0xF] << (i * 4)
+        new_state= 0
+        for i in range(16): 
+            nibble_word = (state >> (4*i)) & 0xf
+            nibble_word = sbox.index(nibble_word) 
+            new_state += (nibble_word << (i * 4))
+        
     return new_state
 
 
@@ -88,8 +91,10 @@ def pLayer(state,mode):
 
     if mode == 'd':
         output = 0
-        for i in range(64):
-            output += ((state >> i) & 0x01) << pmt_inv[i]
+        for i in range(64): #bit operation for each specific bit
+            bit = (state >> pmt[i]) & 0x01 #shift the bit in the reverse by using P(i) before i
+            output += bit << i #shift bit i to the position indicated by i (reverse process)
+
     return output
 
 
@@ -99,8 +104,12 @@ def present_round(state, roundKey):
     state = pLayer(state,'e')
     return state
 
+# forgot to go the other way round
 
 def present_inv_round(state, roundKey):
+    state = pLayer(state,'d')
+    state = sBoxLayer(state,'d')
+    state = addRoundKey(state,roundKey)
     return state
 
 
@@ -147,6 +156,7 @@ if __name__ == "__main__":
     assert round3 == round33
 
     print('present rounds have suceeded')
+
     # invert single rounds
     plain11 = present_inv_round(round1, key1)
     assert plain1 == plain11
