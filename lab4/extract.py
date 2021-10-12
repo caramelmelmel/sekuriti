@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # ECB plaintext extraction skeleton file for 50.042 FCS
+# Leong Yun Qin Melody 1004489
+
 
 import argparse
 from collections import Counter
