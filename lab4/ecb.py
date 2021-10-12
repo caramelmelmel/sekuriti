@@ -105,7 +105,7 @@ if __name__=="__main__":
     try:
         key = int(keyfile_content, 16) #int with base 16 or hexadecimal value key
         if (0x00000000000000000000 <= key <= 0xFFFFFFFFFFFFFFFFFFFF == False):
-            sys.exit("Key must be between hexadecimal value of 0x00000000000000000000 and 0xFFFFFFFFFFFFFFFFFFFF (80 bits)") #Max Key size is 80 bits
+            sys.exit("Key must be 80 bits") #Max Key size is 80 bits
     except ValueError: # Error for non numerical keys
         sys.exit("Value Error - Key must be in hexadecimal number form")
 
