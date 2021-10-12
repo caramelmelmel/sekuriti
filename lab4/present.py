@@ -42,12 +42,12 @@ def ror(val, r_bits, max_bits): return \
 #generate the round key for 80 bit key
 def genRoundKeys(key):
     #the key denotes the 80 or 128 bit
-    #return a dictionary of 64 bit 
+    #return a dictionary of 64 bit
     key_dict = {0:32}
 
     #try doing it for the rest
     for i in range(1,FULLROUND+2):
-        #raw kwy at bit level
+        #raw key at bit level
         key_dict[i] = key >> 16
         # 1. Shift
         # rawKey[19:len(rawKey)]+rawKey[0:19]
