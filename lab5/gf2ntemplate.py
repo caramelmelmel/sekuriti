@@ -55,9 +55,22 @@ class Polynomial2:
     #lc 
     def lc(self):
         return self.coeffs[-1]
+    
+    def deg(self):
+        return len(self.coeffs) - 1
 
     def div(self,p2):
-        
+        q = Polynomial2([0])
+        r = copy.deepcopy(self)
+        d = p2.deg()
+        c = p2.lc()
+        s = []
+
+        while r.deg() >= d:
+            s= Polynomial2([0 for i in range(r.deg()-d)] + [1])
+            q = s.add(q)
+            r = r.sub(s.mul(p2))
+
         return q, r
     
 
@@ -71,7 +84,7 @@ class Polynomial2:
         #check for coincidence 
         if len(self.coeffs) >= len(modp.coeffs):
 
-            #XOR self and modp without the msb
+            #XOR self using the add method and modp without the msb
             return Polynomial2(self.coeffs[:-1]).add(Polynomial2(modp.coeffs[:-1]))
 
         else:
@@ -85,7 +98,11 @@ class Polynomial2:
         return output.rstrip(output[-1])
 
     def getInt(p):
-        pass
+        res = 0 
+        # do the comp struct method 
+        for order,coeff in enumerate(p.coeffs):
+            res += (2** order) * coeff
+        return res
 
 
 class GF2N:
