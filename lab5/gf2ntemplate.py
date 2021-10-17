@@ -97,11 +97,12 @@ class Polynomial2:
                 output += f' x^{len(self.coeffs)-order-1} +'
         return output.rstrip(output[-1])
 
-    def getInt(p):
+    def getInt(self):
         res = 0 
         # do the comp struct method 
-        for order,coeff in enumerate(p.coeffs):
-            res += (2** order) * coeff
+        for order,coeff in enumerate(self.coeffs):
+            res += coeff * (2**order)
+
         return res
 
 
@@ -116,28 +117,46 @@ class GF2N:
                [0,0,0,1,1,1,1,1]]
 
     def __init__(self,x,n=8,ip=Polynomial2([1,1,0,1,1,0,0,0,1])):
-        pass
-
+        self.x = x 
+        self.n = n
+        self.ip = ip
 
     def add(self,g2):
-        pass
+        result = self.getPolynomial2().add(g2.getPolynomial2())
+        #xor with the ip
+        result = result.modp(self.ip)
+
+        return GF2N(result.getInt(),self.n,self.ip)
+
     def sub(self,g2):
-        pass
+        #same as add 
+        return self.add(g2)
     
     def mul(self,g2):
-        pass
+        result = self.getPolynomial2().mul(g2.getPolynomial2(), self.ip)
+        return GF2N(result.getInt(),self.n,self.ip)
 
     def div(self,g2):
-        pass
+        q,r = self.p.div(g2.p)
+        return GF2N(q.getInt(),self.n,self.ip), GF2N(r.getInt(),self.n,self.ip)
+
 
     def getPolynomial2(self):
-        pass
-
+        #convert the integer to bits
+        coeffs = list("{0:b}".format(self.x))
+        #convert then reverse
+        polynomial2 = Polynomial2([int(bit) for bit in coeffs][::-1])
+        return polynomial2
+    
+    @property
+    def p(self):
+        return self.getPolynomial2()
+    
     def __str__(self):
-        pass
+        return str(self.p.getInt())
 
     def getInt(self):
-        pass
+        return self.p.getInt()
 
     def mulInv(self):
         pass
@@ -208,6 +227,7 @@ print('g7/g8 =')
 print('q = ',q.getPolynomial2())
 print('r = ',r.getPolynomial2())
 
+"""
 print('\nTest 7')
 print('======')
 ip=Polynomial2([1,1,0,0,1])
@@ -226,3 +246,4 @@ g11=g10.mulInv()
 print('inverse of g10 = g11 =', hex(g11.getInt()))
 g12=g11.affineMap()
 print('affine map of g11 =',hex(g12.getInt()))
+"""
