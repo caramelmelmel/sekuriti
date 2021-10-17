@@ -9,5 +9,3 @@ def and_gate(a,b):
         return 1
     else:
         return 0
-
-#shift right 

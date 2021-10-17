@@ -51,7 +51,10 @@ class Polynomial2:
                 res = res.add(mod_list[index])
 
         return res  
-        
+    
+    #lc 
+    def lc(self):
+        return self.coeffs[-1]
 
     def div(self,p2):
         
@@ -76,12 +79,9 @@ class Polynomial2:
 
     def __str__(self):
         output = ""
-        for order, coeff in enumerate(self.coeffs):
+        for order, coeff in enumerate(self.coeffs[::-1]):
             if coeff == 1:
-                if order == 0:
-                    output += "1 +"
-                else:
-                    output += f" x^{order} +"
+                output += f' x^{len(self.coeffs)-order-1} +'
         return output.rstrip(output[-1])
 
     def getInt(p):
