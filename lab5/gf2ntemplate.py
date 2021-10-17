@@ -4,25 +4,85 @@
 # Leong Yun Qin Melody 1004489
 
 import copy
+from helper import (xor, and_gate)
+from itertools import zip_longest
 class Polynomial2:
     def __init__(self,coeffs):
-        pass
+        self.coeffs = coeffs
+        
 
     def add(self,p2):
-        pass
+        added_ls = []
+        #check if the len of what is lesser than what then add the 0s to the front
+        for i,j in zip_longest(self.coeffs, p2.coeffs,fillvalue=0):
+            added_ls.append(xor(i,j))
+        #remove the trailing zero as some do not match 
+        while len(added_ls) > 0 and added_ls[-1] == 0:
+            added_ls.pop(-1)
+        return Polynomial2(added_ls)
+                
 
     def sub(self,p2):
-        pass
+        return self.add(p2)
 
     def mul(self,p2,modp=None):
-        pass
+        # L-> R LSB to MSB in the list
+        mod_list = []
+        mod_list.append(p2)
+
+        for i in range(1,len(self.coeffs)):
+            prev_res = mod_list[-1]
+
+            #Shift regardless of 0 or 1
+            shifted_prev_result = prev_res.shift()
+
+            #use the modp value
+            if modp != None:
+                mod_list.append(shifted_prev_result.modp(modp))
+
+            else:
+                mod_list.append(shifted_prev_result)
+
+        #return the class object
+        res = Polynomial2([0])
+
+        for index, coeff in enumerate(self.coeffs):
+            if coeff == 1:
+                res = res.add(mod_list[index])
+
+        return res  
+        
 
     def div(self,p2):
-        pass
+        
         return q, r
+    
+
+    def shift(self):
+        #shift to the right 
+        #adds to the MSB
+        return Polynomial2([0] + self.coeffs)
+    
+    def modp(self, modp):
+
+        #check for coincidence 
+        if len(self.coeffs) >= len(modp.coeffs):
+
+            #XOR self and modp without the msb
+            return Polynomial2(self.coeffs[:-1]).add(Polynomial2(modp.coeffs[:-1]))
+
+        else:
+            return self
 
     def __str__(self):
-        pass
+        output = ""
+        for order, coeff in enumerate(self.coeffs):
+            if coeff == 1:
+                if order == 0:
+                    output += "1 +"
+                else:
+                    output += f" x^{order} +"
+        return output.rstrip(output[-1])
 
     def getInt(p):
         pass
@@ -75,7 +135,9 @@ print('p2=x^3+x^2+1')
 p1=Polynomial2([0,1,1,0,0,1])
 p2=Polynomial2([1,0,1,1])
 p3=p1.add(p2)
-print('p3= p1+p2 = ',p3)
+#print(type(p3))
+print(f'p3= p1+p2 = {p3}')
+
 
 print('\nTest 2')
 print('======')
