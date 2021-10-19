@@ -1,21 +1,35 @@
 #done by Leong Yun Qin Melody 1004489
 
+from prettytable import PrettyTable
 from gf2ntemplate import GF2N, Polynomial2
 
 
-file = open('table1.txt','w')
 
+# create table for GF(2^4)
+n = 16
 ip = Polynomial2([1,0,0,1,1])
+with open('table1.txt', 'w+') as fout:
+    header1 = ['GF(2^4) +']
+    header2 = ['GF(2^4) *']
 
-output = ""
+    for i in range(n):
+        header1.append(str(i))
+        header2.append(str(i))
 
-for i in range(2**4):
-    for j in range(2**4):
-        g1 = GF2N(i,4,ip)
-        g2 = GF2N(j,4,ip)
-        output += f'g1: {g1} \n'
-        output += f'g2: {g2} \n'
-        output += f'add: {g1.add(g2)} \n'
-        output += f'mul: {g1.mul(g2)} \n'
-        output += '\n'
-file.write(output)
+    t1 = PrettyTable(header1)
+    t2 = PrettyTable(header2)
+
+    for j in range(n):
+        row_add = [str(j)]
+        row_mul = [str(j)]
+        for k in range(n):
+            row_add.append(GF2N(k).add(GF2N(j)).getInt())
+            row_mul.append(GF2N(k, ip=ip).mul(GF2N(j, ip=ip)).getInt())
+        t2.add_row(row_mul)
+        t1.add_row(row_add)
+
+    print(t1)
+    print(t2)
+
+    fout.writelines(str(t1))
+    fout.writelines(str(t2))
