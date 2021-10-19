@@ -1,0 +1,34 @@
+
+1. False.
+Draw the logic table out.
+In GF(2) both addiction and subtraction are the same as it is a simple Galois Field with characteristic 2 and by drawing the truth table for its elements {0, 1} for both addition and subtraction we can see that they are exactly the same and corresponds 
+to a XOR operation in boolean logic. 
+
+Both 0 + 1 and 1 + 0 results in: 
+
+1 mod 2 which is 1, as well as 0 - 1 and 1 - 0 which results in (-1) mod 2 = (1) mod 2 = 1.
+
+In GF(3) the main elements are {0, 1, 2}, addition and subtraction is not the same as in GF(2). 
+
+The addition in GF(3) produces a more symmetrical boolean table where adding 0 + 1 and 1 + 0, both results in 1 mod 3 which is 1, the same goes for 1 + 2 and 2 + 1 which results in 3 mod 3 which is 0, however in the subtraction boolean table, subtracting 1 from 0 will result in: (-1) mod 3 which is 2 but 1 - 0 it results in: 1 mod 3 which is 1, and we can see that the logic table is more asymmetrical here.
+
+2. True
+In modular arithmetics, Addition and subtraction are performed by adding or subtracting two of the polynomials together, and reducing the result modulo the characteristic. 
+In a finite field with base 2, addition modulo 2, subtraction modulo 2, and XOR are identical. 
+Since here the Galois Field is given as GF(2^N), the base is prime number 2 which is the smallest positive integer p such that p . 1  equals to 0, and with the characteristic of 2, both addition and subtraction is identical.
+
+3. True
+GF(2) is the finite field of two elements with its additive and multiplicative identities respectively denoted 0 and 1. 
+The elements of GF(2) can be identified with the two possible values of a bit and to the boolean values true and false or {0, 1}. The multiplication of GF(2) on boolean variables corresponds to the logical AND gate, as we can see 0 x 0 = 0 which is equivalent to 0 AND 0, the same goes for 0 x 1 = 0, 1 x 0 = 0, and 1 x 1 = 1.
+
+4. False
+In a Galois Field of GF(2^8) the highest order/degree of polynomial is 7. For GF(2^n), all elements are polynomials of degree < n. Elements of GF(p^n) may be represented as polynomials of degree strictly less than n over GF(p). Since here the n = 8, then all elements are polynomials of degree < 8. Rule of Galois field says that for GF(2^n), the number of elements is n-1 
+
+Example: 
+In GF(2^8),
+P(x)= a7x^7 + a6x^6 + a5x^5 + a4x^4 + a3x^3 + a2x^2 + a1x + a0
+
+When conducting a multiplication, the reduction polynomial P(x) of the extension field is used to ensure that the result of multiplications stays within the extension field.
+
+5. False
+An irreducible polynomial cannot be factored into the product of two non-constant polynomials, however the polynomial presented here which is P(x) = x^4 + x^3 + x + 1 can still be factored into non-constant polynomials, which are (x^2 - x + 1)(x + 1)(x + 1), thus it is not irreducible and instead is a reducible polynomial
