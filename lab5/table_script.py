@@ -8,9 +8,9 @@ from gf2ntemplate import GF2N, Polynomial2
 # create table for GF(2^4)
 n = 16
 ip = Polynomial2([1,0,0,1,1])
-with open('table1.txt', 'w+') as fout:
-    header1 = ['GF(2^4) +']
-    header2 = ['GF(2^4) *']
+with open('table1.txt', 'w') as fout:
+    header1 = ['GF(2^4) add']
+    header2 = ['GF(2^4) multiply']
 
     for i in range(n):
         header1.append(str(i))
