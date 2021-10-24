@@ -6,7 +6,9 @@ import random
 
 
 def dhke_setup(nb):
-    pass
+    p = 1208925819614629174706189
+    alpha = random.randint(2,p-2)
+    return p, alpha 
 
 
 def gen_priv_key(p):
