@@ -15,7 +15,6 @@ def square_multiply(a,x,n):
         y = (y ** 2) % n 
         if i == '1':
             y = y* a %n
-    #print(y)
     return y 
 
 
