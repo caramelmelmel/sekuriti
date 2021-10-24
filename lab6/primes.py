@@ -19,13 +19,13 @@ def square_multiply(a,x,n):
 
 
 def miller_rabin(n, a):
-    pass
+    pass    
 
 def gen_prime_nbits(n):
     pass
 
 if __name__=="__main__":
-    print(square_multiply(16,12,1))
+    #print(square_multiply(16,12,1))
     print('Is 561 a prime?')
     print(miller_rabin(561,2))
     print('Is 27 a prime?')
