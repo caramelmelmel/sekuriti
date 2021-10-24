@@ -9,3 +9,5 @@ lab5 <br/>
 lab6 <br/>
 lab7 <br/>
 
+## Disclaimer
+Not all the labs are full marks. Please learn how to discern accordingly. The labs are all for your reference!
