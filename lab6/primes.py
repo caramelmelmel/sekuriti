@@ -14,9 +14,9 @@ def gen_prime_nbits(n):
 if __name__=="__main__":
     print('Is 561 a prime?')
     print(miller_rabin(561,2))
-    print('Is 27 a prime?'
+    print('Is 27 a prime?')
     print(miller_rabin(27,2))
-    print('Is 61 a prime?'
+    print('Is 61 a prime?')
     print(miller_rabin(61,2))
 
     print('Random number (100 bits):')
