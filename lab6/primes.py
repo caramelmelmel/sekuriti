@@ -6,7 +6,7 @@ def square_multiply(a,x,n):
     y = 1
 
     #number of bits in x
-    num_bits = x.bit_length()
+    #num_bits = x.bit_length()
 
     #convert the integer x into a lit of bits
     x_in_bits = list("{0:b}".format(x))

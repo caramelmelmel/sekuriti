@@ -1,7 +1,8 @@
 # 50.042 FCS Lab 6 template
 # Year 2021
 
-import primes
+#from lab6.primes import square_multiply
+from primes import (square_multiply)
 import random
 
 
@@ -12,15 +13,21 @@ def dhke_setup(nb):
 
 
 def gen_priv_key(p):
-    pass
+    private_alice = random.randint(2,p-2)
+    #private_bob = random.randint(2,p-2)
+    return private_alice
 
 
 def get_pub_key(alpha, a, p):
-    pass
+    pub_key = square_multiply(alpha,a,p)
+    #pub_key = (alpha ** a) % p 
+    return pub_key
 
 
 def get_shared_key(keypub, keypriv, p):
-    pass
+    shared_key = square_multiply(keypub,keypriv,p)
+    return shared_key
+    #return (keypub ** keypriv)%p
 
 
 if __name__ == "__main__":

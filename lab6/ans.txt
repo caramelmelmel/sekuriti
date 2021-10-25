@@ -1,0 +1,5 @@
+
+How could we perform the exchange of keys in the real world? Do we need a secure channel? Why or why not?
+The exchange is often done through the use of the certification authority or a third party 
+
+What is an advantage and a disadvantage of DHKE?
