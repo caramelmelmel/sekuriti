@@ -65,7 +65,6 @@ if __name__ == "__main__":
     key_file.close()
     key_file = open('shared_key_p2.txt', 'r')
     keyfile_content = key_file.read()
-    #error is here onwards
     keyfile_content = keyfile_content.rstrip()
     present_with_ecb.ecb('complain.txt','complain_enc.txt',int(keyfile_content,16),'E')
     #open the enc file
@@ -79,3 +78,4 @@ if __name__ == "__main__":
     print(f'The decrypted text is : {decrypted_file.read()}')
     encrypted.close()
     decrypted_file.close()
+    key_file.close()
