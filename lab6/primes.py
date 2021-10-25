@@ -34,10 +34,11 @@ def single_test(n, a):
         
     return False
     
-def miller_rabin(n, k):
-    for i in range(k):
-        a = random.randrange(2, n - 1)
-        if not single_test(n, a):
+def miller_rabin(n, a):
+    
+    for i in range(a):
+        k = random.randrange(2, n - 1)
+        if not single_test(n, k):
             return False
             
     return True
