@@ -18,8 +18,29 @@ def square_multiply(a,x,n):
     return y 
 
 
-def miller_rabin(n, a):
-    pass    
+def single_test(n, a):
+    exp = n - 1
+    while not exp & 1:
+        exp >>= 1
+        
+    if square_multiply(a, exp, n) == 1:
+        return True
+        
+    while exp < n - 1:
+        if square_multiply(a, exp, n) == n - 1:
+            return True
+            
+        exp <<= 1
+        
+    return False
+    
+def miller_rabin(n, k):
+    for i in range(k):
+        a = random.randrange(2, n - 1)
+        if not single_test(n, a):
+            return False
+            
+    return True
 
 def gen_prime_nbits(n):
     pass
