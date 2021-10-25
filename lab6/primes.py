@@ -21,8 +21,8 @@ def square_multiply(a,x,n):
 def single_test(n, a):
     exp = n - 1
     while not exp & 1:
+        #SR by 1 
         exp >>= 1
-        
     if square_multiply(a, exp, n) == 1:
         return True
         
@@ -44,7 +44,13 @@ def miller_rabin(n, a):
     return True
 
 def gen_prime_nbits(n):
-    pass
+    # n: number of bits for the prime number
+    #generate until everything is a prime number
+    x = random.getrandbits(n)
+    while miller_rabin(x,2) == False:
+        #SL by 1 
+        x = random.getrandbits(n)
+    return x
 
 if __name__=="__main__":
     #print(square_multiply(16,12,1))
