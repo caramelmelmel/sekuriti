@@ -1,0 +1,97 @@
+
+1. How could we perform the exchange of keys in the real world? Do we need a secure channel? Why or why not?
+
+Via the key exchange standard of DHKE, the two parties Alice and Bob will establish the shared secret between the two of them.
+While Alice has her private key of A and Bob has his private key of B.
+Mathematically, with a base g and modulus p (prime number)
+Alice's public key is a = g ^A mod p which is given to Bob.
+Bob's public key, b =  g ^B mod p.
+At alice's side, the shared key is a^b mod p 
+while that of bob side is B ^ a mod p 
+both values at the respective side must be equal to each other
+
+We do not need a secure channel. This is because the public keys of both parties are known or are of common knowledge. The exchange of keys need not be known so long as the private keys of both parties are not known.
+Both parties are not exchanging the private keys through the channel. Hence, the attacker is unable to compute the modulus to get the shared key between that of two parties. This shows no neeed for a secure channel.
+
+
+2. What is an advantage and a disadvantage of DHKE?
+Advantage: 
+Since it's computationally intensive, as it is costly to solve the discrete log algorithm, passive eavesdropper are less able to eavesdrop.
+
+Disadvantage:
+No authentication of each party is involved, thus DHKE is prone to man in the middle attack. Hence, if a message is found, the attacker can perform a mask operation without letting the receipients find out.
+
+3. To avoid attack using Baby-Step Giant-Steps method, how many bits would you set the key be in DHKE protocol? How did you decide on this number? Answer as Q3 in ans.txt
+Based on my results below, 
+The key size is 16
+The guess of the shared key is 12772
+The real shared key is 12772
+Time taken is 0.0031299591064453125
+The key size is 17
+The guess of the shared key is 21551
+The real shared key is 21551
+Time taken is 0.0032889842987060547
+The key size is 18
+The guess of the shared key is 49674
+The real shared key is 49674
+Time taken is 0.00307464599609375
+The key size is 19
+The guess of the shared key is 244090
+The real shared key is 244090
+Time taken is 0.01493382453918457
+The key size is 20
+The guess of the shared key is 179701
+The real shared key is 179701
+Time taken is 0.012436866760253906
+The key size is 21
+The guess of the shared key is 88569
+The real shared key is 88569
+Time taken is 0.04612994194030762
+The key size is 22
+The guess of the shared key is 3076657
+The real shared key is 3076657
+Time taken is 0.29506707191467285
+The key size is 23
+The guess of the shared key is 148756
+The real shared key is 148756
+Time taken is 0.5548732280731201
+The key size is 24
+The guess of the shared key is 5703275
+The real shared key is 5703275
+Time taken is 1.1314599514007568
+The key size is 25
+The guess of the shared key is 81937
+The real shared key is 81937
+Time taken is 2.963986873626709
+The key size is 26
+The guess of the shared key is 14930030
+The real shared key is 14930030
+Time taken is 4.465907096862793
+The key size is 27
+The guess of the shared key is 8063240
+The real shared key is 8063240
+Time taken is 1.0355660915374756
+The key size is 28
+The guess of the shared key is 17132332
+The real shared key is 17132332
+Time taken is 6.811723947525024
+The key size is 29
+The guess of the shared key is 32824999
+The real shared key is 32824999
+Time taken is 4.315165996551514
+The key size is 30
+The guess of the shared key is 125209926
+The real shared key is 125209926
+Time taken is 294.58933210372925
+The key size is 31
+The guess of the shared key is 313354765
+The real shared key is 313354765
+Time taken is 548.4790971279144
+The key size is 32
+The guess of the shared key is 195217663
+The real shared key is 195217663
+Time taken is 23291.37474679947
+
+We can see from the above results that when the number of key bits is 30, the time taken to compute the shared key increases by a huge
+difference from that of the key size 29 by 290 seconds. Hence, longer time to guess the shared key means that it's more computationally expensive and therefore less prone 
+to meet in the middle attack as the attacker would take more time to attack. Thus, I would set the number of key bits to 30
