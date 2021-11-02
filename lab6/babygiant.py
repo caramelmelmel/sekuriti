@@ -41,10 +41,9 @@ def giant_step(alpha, p, fname):
 def baby_giant(alpha, beta, p):
     m = calculate_m(p)
     #baby step
-    if os.path.exists('baby_step.txt'):
+    if os.path.exists('baby_step.txt') and os.path.exists('giant_step.txt'):
         os.remove('baby_step.txt')
         os.remove('giant_step.txt')
-
     baby_step_dict = baby_step(alpha,beta,p,'baby_step.txt')
     giant_step_dict = giant_step(alpha,p,'giant_step.txt')
 
