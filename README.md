@@ -1,4 +1,5 @@
 # sekuriti
+Hi desperate folks copy however you want. Please have the courtesy to ask before cloning or clarify something. (This does not apply to juniors)
 
 ## Contents
 lab1 <br/>
