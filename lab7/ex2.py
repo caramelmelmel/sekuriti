@@ -20,24 +20,25 @@ def int_from_bytes(xbytes):
 def string_to_bytes(string):
     return bytes(string,'utf-8')
 
-# plaintext
-plaintext = open('196673.txt','r')
-hash_algo = SHA256.new()
-hashed_txt = hash_algo.update(plaintext.read().encode())
-message_digest = hash_algo.hexdigest()
+if __name__ == "__main__":
+    # plaintext
+    plaintext = open('196673.txt','r')
+    hash_algo = SHA256.new()
+    hashed_txt = hash_algo.update(plaintext.read().encode())
+    message_digest = hash_algo.hexdigest()
 
-# check if x' == hashed plain
-message_digest_int = int_from_bytes(string_to_bytes(message_digest))
-encrypted_digest = enc(message_digest_int,rsa_e,n)
-dec_digest = dec(encrypted_digest,rsa_d,n)
+    # check if x' == hashed plain
+    message_digest_int = int_from_bytes(string_to_bytes(message_digest))
+    encrypted_digest = enc(message_digest_int,rsa_e,n)
+    dec_digest = dec(encrypted_digest,rsa_d,n)
 
-#convert int to the hash
-hashed_res = int_to_bytes(dec_digest).decode()
+    #convert int to the hash
+    hashed_res = int_to_bytes(dec_digest).decode()
 
-print("plain:")
-print(message_digest,'\n')
-print("decrypted:")
-print(hashed_res,'\n')
+    print("plain:")
+    print(message_digest,'\n')
+    print("decrypted:")
+    print(hashed_res,'\n')
 
-if (message_digest == hashed_res):
-    print('The decrypted and the original matches!')
+    if (message_digest == hashed_res):
+        print('The decrypted and the original matches!')
