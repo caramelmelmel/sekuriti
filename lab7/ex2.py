@@ -3,18 +3,9 @@ from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
 
 from sq_mult import square_multiply
+from read_helper import rsa_e, rsa_d, n
 
-#public key
-pubkey = open('mykey.pem.pub','r')
-rsakey = RSA.importKey(pubkey.read())
-n = rsakey.n
-rsa_d = rsakey.e
-#print(n,"\n")
 
-#private key
-priv_key = open('mykey.pem.priv','r')
-rsa_priv = RSA.importKey(priv_key.read())
-rsa_e = rsa_priv.d
 
 def enc(msg,priv,mod_p):
     return square_multiply(msg,priv,mod_p)
