@@ -1,10 +1,7 @@
-import Crypto
-from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
 
 from sq_mult import square_multiply
 from read_helper import rsa_e, rsa_d, n
-
 
 
 def enc(msg,priv,mod_p):
