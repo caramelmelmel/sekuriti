@@ -20,10 +20,11 @@ m = y * ys
 decrypted_rsa = dec(m,rsa_e,n)
 
 #TODO: part 3 formatting
-print("Part II-------------\n")
-print(f"Encrypting:  {int_to_enc}")
+if __name__ == "__main__":
+    print("Part II-------------\n")
+    print(f"Encrypting:  {int_to_enc}")
 
-print("Result:\n")
-print(m)
+    print("Result:\n")
+    print(m,'\n')
 
-print(f"Decrypted:    {decrypted_rsa}")
+    print(f"Decrypted:    {decrypted_rsa}")
