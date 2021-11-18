@@ -1,4 +1,4 @@
 As we can see from ex5.ipynb, 
 the ex5.py does not work!
 
-the RSA protocol attack is limited in the sense that it requires exponentiation that is highly expensive to compute. Hence, the latency of key exchange is high
+the RSA protocol attack is limited in the sense that it requires exponentiation that is highly expensive to compute. Hence, the latency of key exchange is high at both Alice's and Bob's side
