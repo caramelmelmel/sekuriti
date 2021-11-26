@@ -1,5 +1,6 @@
 # sekuriti
 Hi desperate folks copy however you want. Please have the courtesy to ask before cloning or clarify something. (This does not apply to juniors)
+You can move to each repository to see my answers.
 
 ## Contents
 lab1 <br/>
@@ -16,3 +17,7 @@ Not all the labs are full marks. Please learn how to discern accordingly. The la
 
 ## Secret
 Labs 8 - 10 is not to be disclosed until the challenge is over
+
+## Credits
+Faith Danielle See
+Alex Wang 
